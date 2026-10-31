@@ -4,6 +4,10 @@ A 90-second action runner about manufacturing quality, starring **Maya Metrology
 
 Part of the **Quality Rush** series by Marcus Faulkner, alongside [Quality Quest](https://marusfaulkner.github.io/quality-quest/) and [Quality Showdown](https://marusfaulkner.github.io/quality-showdown/).
 
+## 🎮 Play Quality Rush
+
+**Play the live game:** https://marusfaulkner.github.io/quality-rush/
+
 ## How to play
 
 | Action | Phone | Keyboard / mouse |
