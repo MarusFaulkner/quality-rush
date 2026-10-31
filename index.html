@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Quality Rush: Defect Runner</title>
+<meta name="description" content="Run the factory floor as Maya Metrology. Pull defective parts before they ship, jump pallets and slide under low beams. A 90-second quality inspection runner.">
+<meta name="theme-color" content="#060f1c">
+<meta property="og:title" content="Quality Rush: Defect Runner">
+<meta property="og:description" content="Pull the defects before they ship. A 90-second quality inspection runner.">
+<meta property="og:image" content="assets/logo.webp">
+<link rel="icon" href="assets/face_confident.webp">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Barlow:wght@500;600;700&family=Barlow+Condensed:wght@600;700&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"></svg>
+
+<section class="screen scroll" id="title"></section>
+<section class="screen" id="play" hidden>
+  <div class="hud">
+    <div class="tile"><div class="k">Score</div><div class="v" id="hScore">0</div></div>
+    <div class="tile"><div class="k">Combo</div><div class="v" id="hCombo">×1</div></div>
+    <div class="tile"><div class="k">Shift</div><div class="v" id="hTime">1:30</div></div>
+    <div class="tile"><div class="k">Quality shields</div><div class="shields" id="hShields"></div></div>
+    <button class="iconbtn" id="sndBtn" aria-label="Mute sound"></button>
+    <button class="iconbtn" id="pauseBtn" aria-label="Pause"><svg viewBox="0 0 24 24"><rect x="6" y="5" width="4" height="14" rx="1" fill="currentColor"/><rect x="14" y="5" width="4" height="14" rx="1" fill="currentColor"/></svg></button>
+  </div>
+  <div class="stagebox" id="stagebox">
+    <canvas id="cv" aria-label="Defect Runner game. Jump pallets and spills, slide under low beams, tap defective parts before they ship."></canvas>
+    <div class="overlay" id="ov"></div>
+  </div>
+  <div class="callout mcall"><div class="face" id="mFace"></div><div class="bubble" id="mSay">Eyes on the line.</div></div>
+  <div class="pad">
+    <button class="pbtn pjump" id="bJump" aria-label="Jump"><svg viewBox="0 0 24 24"><path d="M12 4l7 8h-4.5v8h-5v-8H5z" fill="currentColor"/></svg><span>JUMP<small>OVER PALLETS</small></span></button>
+    <button class="pbtn pslide" id="bSlide" aria-label="Slide"><svg viewBox="0 0 24 24"><path d="M12 20l-7-8h4.5V4h5v8H19z" fill="currentColor"/></svg><span>SLIDE<small>UNDER BEAMS</small></span></button>
+  </div>
+  <div class="keys"><kbd>Space</kbd> / <kbd>↑</kbd> jump · <kbd>↓</kbd> slide · <b>click</b> a defective part to pull it · <kbd>P</kbd> pause</div>
+</section>
+<section class="screen scroll" id="end" hidden></section>
+<noscript><p style="padding:24px;color:#fff">Quality Rush needs JavaScript to run.</p></noscript>
+<script src="js/game.js"></script>
+</body>
+</html>
