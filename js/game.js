@@ -12,6 +12,7 @@ const ASSETS = {
   face_frustrated: "assets/face_frustrated.webp",
   face_happy: "assets/face_happy.webp",
   face_surprised: "assets/face_surprised.webp",
+  idle: "assets/idle.webp",
   jump: "assets/jump.webp",
   logo: "assets/logo.webp",
   run0: "assets/run0.webp",
@@ -172,7 +173,7 @@ function saveBest(v){ try{ localStorage.setItem("qr-best-"+MODE,String(v)); }cat
 const IMG={}, PARTIMG={};
 function loadImg(src){ return new Promise(r=>{ const i=new Image(); i.onload=()=>r(i); i.onerror=()=>r(i); i.src=src; }); }
 async function loadAll(){
-  const keys=["run0","run1","run2","jump","slide","dive","stumble","bg_far","bg_near"];
+  const keys=["idle","run0","run1","run2","jump","slide","dive","stumble","bg_far","bg_near"];
   await Promise.all(keys.map(async k=>{ IMG[k]=await loadImg(ASSETS[k]); }));
   const jobs=[];
   for(const [f,info] of Object.entries(FAMILIES)) for(const d of [null,...info.defects]) for(let s=0;s<4;s++)
@@ -452,12 +453,15 @@ function draw(){
   if(G && prog()>.6 && G.state==="run"){ ctx.strokeStyle="rgba(255,255,255,.12)"; ctx.lineWidth=2;
     for(let i=0;i<6;i++){ const y=60+((i*83+G.nearX*.7)%360), x=(W-((G.nearX*1.7+i*211)%(W+200))); ctx.beginPath(); ctx.moveTo(x,y); ctx.lineTo(x+70,y); ctx.stroke(); } }
 }
+// Standing sprite is taller than a running frame (she is upright, not crouched mid-stride): same ratio as in All Hands (200 vs 158)
+const MAYA_IDLE_H=Math.round(170*200/158);
 function drawMaya(g){
   let img, h, y=FEET, x=g.mx;
   if(g.stumbleT>=0){ img=IMG.stumble; h=94; x-=10*Math.sin(g.stumbleT*Math.PI); }
   else if(g.slideT>=0){ img=IMG.slide; h=94; }
   else if(g.jumpT>=0){ img=IMG.jump; h=142; y-=4*M().apex*g.jumpT*(1-g.jumpT); }
   else if(g.catchT>=0){ img=IMG.dive; h=104; }
+  else if(g.state==="count"&&IMG.idle&&IMG.idle.width){ img=IMG.idle; h=MAYA_IDLE_H; }   // standing at the start line until GO
   else { const seq=[0,1,2,1]; img=IMG["run"+seq[Math.floor(g.runPhase*4)%4]]; h=170; y-=Math.abs(Math.sin(g.runPhase*Math.PI*2))*3; }
   if(!img||!img.width) return;
   const w=img.width*h/img.height;
